@@ -10,9 +10,10 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *chatTableView;  // 消息列表
-@property (weak, nonatomic) IBOutlet UITextField *textField;      // 文字编辑框
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@property (nonatomic, strong) UITableView *chatTableView;  // 消息列表
+@property (nonatomic, strong) UITextField *textField;      // 文字编辑框
+@property (nonatomic, strong) UIButton *sendBtn;           // 发送按钮
 
 @property (strong, nonatomic) NSMutableArray *msgArray; // 消息数组
 
@@ -40,20 +41,62 @@
     _msgArray = [NSMutableArray arrayWithObjects:dict0, dict1, dict2, dict3, dict4, dict5, dict6, dict7, dict8, dict9, nil];
     
     // 初始化列表
-    _chatTableView.backgroundColor = [UIColor greenColor];
-    _chatTableView.delegate = self;
-    _chatTableView.dataSource = self;
-    
+    self.chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height - 40 - 50) style:UITableViewStylePlain];
+    self.chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.chatTableView.allowsSelection = NO;
+    self.chatTableView.delegate = self;
+    self.chatTableView.dataSource = self;
+    [self.view addSubview:_chatTableView];
+
     // 编辑框
-    _textField.delegate = self;
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 40, self.view.frame.size.width - 50, 40)];
+    self.textField.borderStyle = UITextBorderStyleRoundedRect;
+    self.textField.delegate = self;
+    [self.view addSubview:_textField];
+    
+    // 发送按钮
+    self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.sendBtn.frame = CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 40, 50, 40);
+    [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [self.sendBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.sendBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [self.sendBtn addTarget:self
+                     action:@selector(sendBtn:)
+           forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_sendBtn];
+    
+    
+    // 注册键盘通知
+    //监听键盘出现和消失
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(keyboardWillShow:)
+                                                name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(keyboardWillHide:)
+                                                name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 #pragma 点击发送文字
-- (IBAction)sendBtn:(id)sender
+- (void)sendBtn:(id)sender
 {
     // 发送文字
-    NSDictionary *msgDict = [NSDictionary dictionaryWithObjectsAndKeys:@"me", @"name", _textField.text, @"content", nil];
+    int x = arc4random() % 100; // 随机出现模拟发送或接收
+    NSDictionary *msgDict = [NSDictionary dictionaryWithObjectsAndKeys:x % 2 ? @"me" : @"she", @"name", _textField.text, @"content", nil];
+    [_msgArray addObject:msgDict];
     
+    // 刷新UI
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatTableView reloadData];
+        // 根据新增行的高度重新定位到最底下
+        UIFont *font = [UIFont systemFontOfSize:14];
+        CGSize size = [[msgDict objectForKey:@"content"] sizeWithFont:font
+                                                 constrainedToSize:CGSizeMake(180.0f, 20000.0f)
+                                                     lineBreakMode:NSLineBreakByWordWrapping];
+        self.chatTableView.contentSize = CGSizeMake(_chatTableView.contentSize.width, _chatTableView.contentSize.height + size.height + 40);
+        
+        [self.chatTableView setContentOffset:CGPointMake(0, _chatTableView.contentSize.height - _chatTableView.frame.size.height) animated:YES];
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,8 +116,7 @@
                                              constrainedToSize:CGSizeMake(180.0f, 20000.0f)
                                                  lineBreakMode:NSLineBreakByWordWrapping];
     
-//    return size.height + 44;
-    return 100;
+    return size.height + 40;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -90,37 +132,67 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    // 添加一些东西
+    // 添加每条消息
     for (UIView *view in cell.subviews)
     {
         [view removeFromSuperview];
     }
     
-    if (indexPath.row % 2)
-    {
-        cell.backgroundColor = [UIColor yellowColor];
-    }
-    else
-    {
-        cell.backgroundColor = [UIColor redColor];
-    }
-    
-    //创建头像
     NSDictionary *dict = [_msgArray objectAtIndex:indexPath.row];
+    NSString *text = [dict objectForKey:@"content"];
+    UIFont *textFont = [UIFont systemFontOfSize:14];
+    // 根据字符长度去限制size
+    CGSize textSize = [text sizeWithFont:textFont
+                       constrainedToSize:CGSizeMake(180.0f, 20000.0f)
+                           lineBreakMode:NSLineBreakByWordWrapping];
+
+    
     if ([[dict objectForKey:@"name"] isEqualToString:@"she"])
     {
-        UIImageView *avatar = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 50, 50)];
+        // 创建头像
+        UIImageView *avatar = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 50, 50)];
         avatar.image = [UIImage imageNamed:@"photo"];
         [cell addSubview:avatar];
         
+        // 文字信息
+        UIImage *bubbleImg = [UIImage imageNamed:@"ReceiverTextNodeBkg.png"];
+        UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubbleImg stretchableImageWithLeftCapWidth:floorf(bubbleImg.size.width / 2) topCapHeight:floorf(bubbleImg.size.height / 2)]];
         
+        UILabel *bubbleTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 5, textSize.width + 10, textSize.height + 10)];
+        bubbleTextLabel.backgroundColor = [UIColor clearColor];
+        bubbleTextLabel.font = textFont;
+        bubbleTextLabel.numberOfLines = 0; // 这句很关键
+        bubbleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        bubbleTextLabel.text = text;
+
+        bubbleImageView.frame = CGRectMake(10 + 50, 0, bubbleTextLabel.frame.size.width + 40.0f, bubbleTextLabel.frame.size.height + 30.0f);
+        [bubbleImageView addSubview:bubbleTextLabel];
+        
+        [cell addSubview:bubbleImageView];
+        
+
     }
     else
     {
-        UIImageView *avatar = [[UIImageView alloc]initWithFrame:CGRectMake(tableView.frame.size.width - 10 - 50, 10, 50, 50)];
+        UIImageView *avatar = [[UIImageView alloc]initWithFrame:CGRectMake(tableView.frame.size.width - 10 - 50, 0, 50, 50)];
         avatar.image = [UIImage imageNamed:@"photo1"];
         [cell addSubview:avatar];
         
+        UIImage *bubbleImg = [UIImage imageNamed:@"SenderTextNodeBkg.png"];
+        UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubbleImg stretchableImageWithLeftCapWidth:floorf(bubbleImg.size.width / 2) topCapHeight:floorf(bubbleImg.size.height / 2)]];
+        
+        UILabel *bubbleTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, textSize.width + 10, textSize.height + 10)];
+        bubbleTextLabel.backgroundColor = [UIColor clearColor];
+        bubbleTextLabel.font = textFont;
+        bubbleTextLabel.numberOfLines = 0; // 这句很关键
+        bubbleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        bubbleTextLabel.text = text;
+        
+        bubbleImageView.frame = CGRectMake(tableView.frame.size.width - 10 - 50 - bubbleTextLabel.frame.size.width - 40.0f, 0, bubbleTextLabel.frame.size.width + 40.0f, bubbleTextLabel.frame.size.height + 30.0f);
+        [bubbleImageView addSubview:bubbleTextLabel];
+        
+        [cell addSubview:bubbleImageView];
+
     }
     
     
@@ -137,6 +209,29 @@
 {
     // 收起键盘，列表下移
     
+}
+
+#pragma mark - 键盘通知
+-(void)keyboardWillShow:(NSNotification *)notification
+{
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    
+    self.view.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.view.frame.size.height);
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardY = keyboardFrame.origin.y;
+    
+    self.view.transform = CGAffineTransformMakeTranslation(0, keyboardY - self.view.frame.size.height);
+}
+
+#pragma mark - 触摸响应
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
 }
 
 @end

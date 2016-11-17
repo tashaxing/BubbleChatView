@@ -11,16 +11,10 @@
 		E41E72651DDC4D1D00FE710C /* photo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72541DDC4D1D00FE710C /* photo1.png */; };
 		E41E72661DDC4D1D00FE710C /* photo1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72551DDC4D1D00FE710C /* photo1@2x.png */; };
 		E41E72671DDC4D1D00FE710C /* photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72561DDC4D1D00FE710C /* photo@2x.png */; };
-		E41E72681DDC4D1D00FE710C /* ReceiverTextNodeBkg.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72571DDC4D1D00FE710C /* ReceiverTextNodeBkg.png */; };
-		E41E72691DDC4D1D00FE710C /* ReceiverTextNodeBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72581DDC4D1D00FE710C /* ReceiverTextNodeBkg@2x.png */; };
-		E41E726A1DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72591DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading.png */; };
-		E41E726B1DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E725A1DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading@2x.png */; };
+		E41E72691DDC4D1D00FE710C /* ReceiverTextNodeBkg.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72581DDC4D1D00FE710C /* ReceiverTextNodeBkg.png */; };
 		E41E726C1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E725B1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying.png */; };
 		E41E726D1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E725C1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying@2x.png */; };
-		E41E726E1DDC4D1D00FE710C /* SenderAppNodeBkg_HL.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E725D1DDC4D1D00FE710C /* SenderAppNodeBkg_HL.png */; };
-		E41E726F1DDC4D1D00FE710C /* SenderAppNodeBkg_HL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E725E1DDC4D1D00FE710C /* SenderAppNodeBkg_HL@2x.png */; };
-		E41E72701DDC4D1D00FE710C /* SenderVoiceNodeDownloading.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E725F1DDC4D1D00FE710C /* SenderVoiceNodeDownloading.png */; };
-		E41E72711DDC4D1D00FE710C /* SenderVoiceNodeDownloading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72601DDC4D1D00FE710C /* SenderVoiceNodeDownloading@2x.png */; };
+		E41E72711DDC4D1D00FE710C /* SenderTextNodeBkg.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72601DDC4D1D00FE710C /* SenderTextNodeBkg.png */; };
 		E41E72721DDC4D1D00FE710C /* SenderVoiceNodePlaying.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72611DDC4D1D00FE710C /* SenderVoiceNodePlaying.png */; };
 		E41E72731DDC4D1D00FE710C /* SenderVoiceNodePlaying@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E41E72621DDC4D1D00FE710C /* SenderVoiceNodePlaying@2x.png */; };
 		E46C7ECE1DCC744600DD8AD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E46C7ECD1DCC744600DD8AD8 /* main.m */; };
@@ -36,16 +30,10 @@
 		E41E72541DDC4D1D00FE710C /* photo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photo1.png; sourceTree = "<group>"; };
 		E41E72551DDC4D1D00FE710C /* photo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo1@2x.png"; sourceTree = "<group>"; };
 		E41E72561DDC4D1D00FE710C /* photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo@2x.png"; sourceTree = "<group>"; };
-		E41E72571DDC4D1D00FE710C /* ReceiverTextNodeBkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReceiverTextNodeBkg.png; sourceTree = "<group>"; };
-		E41E72581DDC4D1D00FE710C /* ReceiverTextNodeBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverTextNodeBkg@2x.png"; sourceTree = "<group>"; };
-		E41E72591DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReceiverVoiceNodeDownloading.png; sourceTree = "<group>"; };
-		E41E725A1DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodeDownloading@2x.png"; sourceTree = "<group>"; };
+		E41E72581DDC4D1D00FE710C /* ReceiverTextNodeBkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReceiverTextNodeBkg.png; sourceTree = "<group>"; };
 		E41E725B1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReceiverVoiceNodePlaying.png; sourceTree = "<group>"; };
 		E41E725C1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ReceiverVoiceNodePlaying@2x.png"; sourceTree = "<group>"; };
-		E41E725D1DDC4D1D00FE710C /* SenderAppNodeBkg_HL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SenderAppNodeBkg_HL.png; sourceTree = "<group>"; };
-		E41E725E1DDC4D1D00FE710C /* SenderAppNodeBkg_HL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SenderAppNodeBkg_HL@2x.png"; sourceTree = "<group>"; };
-		E41E725F1DDC4D1D00FE710C /* SenderVoiceNodeDownloading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SenderVoiceNodeDownloading.png; sourceTree = "<group>"; };
-		E41E72601DDC4D1D00FE710C /* SenderVoiceNodeDownloading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SenderVoiceNodeDownloading@2x.png"; sourceTree = "<group>"; };
+		E41E72601DDC4D1D00FE710C /* SenderTextNodeBkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SenderTextNodeBkg.png; sourceTree = "<group>"; };
 		E41E72611DDC4D1D00FE710C /* SenderVoiceNodePlaying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SenderVoiceNodePlaying.png; sourceTree = "<group>"; };
 		E41E72621DDC4D1D00FE710C /* SenderVoiceNodePlaying@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SenderVoiceNodePlaying@2x.png"; sourceTree = "<group>"; };
 		E46C7EC91DCC744600DD8AD8 /* BubbleChatView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BubbleChatView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,16 +66,10 @@
 				E41E72541DDC4D1D00FE710C /* photo1.png */,
 				E41E72551DDC4D1D00FE710C /* photo1@2x.png */,
 				E41E72561DDC4D1D00FE710C /* photo@2x.png */,
-				E41E72571DDC4D1D00FE710C /* ReceiverTextNodeBkg.png */,
-				E41E72581DDC4D1D00FE710C /* ReceiverTextNodeBkg@2x.png */,
-				E41E72591DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading.png */,
-				E41E725A1DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading@2x.png */,
+				E41E72581DDC4D1D00FE710C /* ReceiverTextNodeBkg.png */,
 				E41E725B1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying.png */,
 				E41E725C1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying@2x.png */,
-				E41E725D1DDC4D1D00FE710C /* SenderAppNodeBkg_HL.png */,
-				E41E725E1DDC4D1D00FE710C /* SenderAppNodeBkg_HL@2x.png */,
-				E41E725F1DDC4D1D00FE710C /* SenderVoiceNodeDownloading.png */,
-				E41E72601DDC4D1D00FE710C /* SenderVoiceNodeDownloading@2x.png */,
+				E41E72601DDC4D1D00FE710C /* SenderTextNodeBkg.png */,
 				E41E72611DDC4D1D00FE710C /* SenderVoiceNodePlaying.png */,
 				E41E72621DDC4D1D00FE710C /* SenderVoiceNodePlaying@2x.png */,
 			);
@@ -194,20 +176,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E41E726A1DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading.png in Resources */,
 				E41E72721DDC4D1D00FE710C /* SenderVoiceNodePlaying.png in Resources */,
 				E41E72661DDC4D1D00FE710C /* photo1@2x.png in Resources */,
-				E41E72701DDC4D1D00FE710C /* SenderVoiceNodeDownloading.png in Resources */,
 				E41E72651DDC4D1D00FE710C /* photo1.png in Resources */,
-				E41E726B1DDC4D1D00FE710C /* ReceiverVoiceNodeDownloading@2x.png in Resources */,
 				E46C7EDC1DCC744600DD8AD8 /* LaunchScreen.storyboard in Resources */,
-				E41E72691DDC4D1D00FE710C /* ReceiverTextNodeBkg@2x.png in Resources */,
-				E41E72711DDC4D1D00FE710C /* SenderVoiceNodeDownloading@2x.png in Resources */,
-				E41E726F1DDC4D1D00FE710C /* SenderAppNodeBkg_HL@2x.png in Resources */,
+				E41E72691DDC4D1D00FE710C /* ReceiverTextNodeBkg.png in Resources */,
+				E41E72711DDC4D1D00FE710C /* SenderTextNodeBkg.png in Resources */,
 				E41E72671DDC4D1D00FE710C /* photo@2x.png in Resources */,
-				E41E72681DDC4D1D00FE710C /* ReceiverTextNodeBkg.png in Resources */,
 				E46C7ED91DCC744600DD8AD8 /* Assets.xcassets in Resources */,
-				E41E726E1DDC4D1D00FE710C /* SenderAppNodeBkg_HL.png in Resources */,
 				E41E72641DDC4D1D00FE710C /* photo.png in Resources */,
 				E41E726C1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying.png in Resources */,
 				E41E726D1DDC4D1D00FE710C /* ReceiverVoiceNodePlaying@2x.png in Resources */,
